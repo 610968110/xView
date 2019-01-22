@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="xProgress">
+        <attr name="xProgressColor" format="color" />
+        <attr name="xProgressDelay" format="integer" />
+        <attr name="xProgressAlpha" format="integer" />
+        <attr name="xProgressDuration" format="integer" />
+        <attr name="xProgressStyle">
+            <enum name="xBound" value="0" />
+            <enum name="xDoubleBounds" value="1" />
+            <enum name="xWave" value="2" />
+            <enum name="xWanderingCubes" value="3" />
+            <enum name="xPyramidBounds" value="4" />
+            <enum name="xRing" value="5" />
+            <enum name="xDoubleBoundsVariation" value="6" />
+            <enum name="xWheel" value="7" />
+            <enum name="xSplitCube" value="8" />
+            <enum name="xSplitCubeVariation" value="9" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="xWave">
+        <attr name="xWaveProgress" format="integer" />
+        <attr name="xMinWave" format="dimension" />
+        <attr name="xWaveTextColor" format="color" />
+        <attr name="xWaveBackground" format="color" />
+        <attr name="xWaveArcColor" format="color" />
+        <attr name="xWaveArcWidth" format="dimension" />
+        <attr name="xWaveColor1" format="color" />
+        <attr name="xWaveColor2" format="color" />
+        <attr name="xWaveTextSize" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="xSnowdrift">
+        <attr name="xSnowdriftImageSize" format="dimension" />
+        <attr name="xSnowdriftDuration" format="integer" />
+        <attr name="xSnowdriftSpeed" format="integer" />
+        <attr name="xSnowdriftAccumulation" format="integer" />
+    </declare-styleable>
+
+</resources>

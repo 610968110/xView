@@ -1,0 +1,207 @@
+apply plugin: 'com.android.library'
+
+def ext_android = rootProject.ext.android
+def ext_config = rootProject.ext.config
+android {
+    compileSdkVersion ext_android.compileSdkVersion
+    buildToolsVersion ext_android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion ext_android.minSdkVersion
+        targetSdkVersion ext_android.targetSdkVersion
+        versionCode ext_android.versionCode
+        versionName ext_android.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        //ndk {
+        //    //设置支持的SO库架构
+        //    abiFilters 'armeabi'// , 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        //}
+
+        //dex 分包
+        multiDexEnabled true
+
+    }
+    dataBinding {
+        enabled true
+    }
+    lintOptions {
+        //不在error情况下中断
+        abortOnError false
+        //无视字符串缺少本地化的情况
+        disable 'MissingTranslation'
+        //无视多做了本地化的字符串
+        disable 'ExtraTranslation'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dexOptions {
+        jumboMode ext_config.jumboMode
+        preDexLibraries ext_config.preDexLibraries
+        maxProcessCount ext_config.maxProcessCount
+        javaMaxHeapSize ext_config.javaMaxHeapSize
+    }
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res_overlay']
+            //jni.srcDirs = []
+            //jniLibs.srcDirs = ['src/main/jniLibs']
+            //jniLibs.srcDirs = ['libs']
+        }
+
+    }
+    //aaptOptions {
+    //    additionalParameters '--utf16'
+    //}
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+task makeJar(type: Copy) {
+    def moduleName = getProject().getName()
+    def defaultAar = moduleName + "-" + DEFAULT_STATUS + ".aar"
+    delete defaultAar
+    from('build/outputs/aar/')
+    into('/')
+    include(defaultAar)
+    rename(defaultAar, moduleName + "-" + ext_android.versionName + ".aar")
+}
+
+makeJar.dependsOn(build)
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.android.support:appcompat-v7:$ext_android.appcompatVersion"
+    implementation "com.android.support:recyclerview-v7:$ext_android.appcompatVersion"
+    implementation "com.android.support:design:$ext_android.appcompatVersion"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+//项目主页--项目的GitHub地址
+def siteUrl = 'https://github.com/610968110/xView'
+//项目的git地址
+def gitUrl = 'https://github.com/610968110/xView.git'
+//compile引用时的第1部分
+group = "com.lbx"
+//项目名
+def libName = "xView"
+// 版本号，compile引用时的最后部分项目名，下次更新是只需要更改版本号即可
+version = ext_android.versionName
+
+//生成源文件
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+//生成Javadoc文档
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+//文档打包成jar
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+//拷贝javadoc文件
+task copyDoc(type: Copy) {
+    from "${buildDir}/docs/"
+    into "docs"
+}
+//上传到JCenter所需要的源码文件
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+// 配置maven库，生成POM.xml文件
+install {
+    repositories.mavenInstaller {
+        pom {
+            project {
+                packaging 'aar'
+                //项目描述，自由填写
+                name libName
+                url siteUrl
+                licenses {
+                    license {
+                        //开源协议
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        //开发者的个人信息，根据个人信息填写
+                        id 'liboxin'
+                        name 'liboxin'
+                        email '610968110@qq.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+//上传到JCenter
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty("bintray.user")
+    key = properties.getProperty("bintray.apikey")
+    configurations = ['archives']
+    pkg {
+        //这里的repo值必须要和你创建Maven仓库的时候的名字一样
+        repo = "Maven"
+        //发布到JCenter上的项目名字
+        name = libName
+        //项目描述
+        desc = libName
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
+
+javadoc {
+    options {
+        //如果你的项目里面有中文注释的话，必须将格式设置为UTF-8，不然会出现乱码
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+        links "http://docs.oracle.com/javase/7/docs/api"
+    }
+}

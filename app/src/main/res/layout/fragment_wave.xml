@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <lbx.xview.views.wave.XWaveView
+            android:id="@+id/waveView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:xMinWave="2dp"
+            app:xWaveArcColor="#ff00aa"
+            app:xWaveArcWidth="1dp"
+            app:xWaveBackground="#519b239b"
+            app:xWaveColor1="#ac00aaff"
+            app:xWaveColor2="#8000aaff"
+            app:xWaveProgress="0"
+            app:xWaveTextColor="#ffffff"
+            app:xWaveTextSize="14sp" />
+
+    </FrameLayout>
+
+</layout>

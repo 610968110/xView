@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <lbx.xview.views.progress.XProgressBar
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:xProgressAlpha="150"
+                app:xProgressColor="#ff00ff"
+                app:xProgressDelay="0"
+                app:xProgressDuration="800"
+                app:xProgressStyle="xBound" />
+
+            <lbx.xview.views.progress.XProgressBar
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:xProgressAlpha="150"
+                app:xProgressColor="#cccccc"
+                app:xProgressDelay="0"
+                app:xProgressDuration="800"
+                app:xProgressStyle="xDoubleBounds" />
+
+            <lbx.xview.views.progress.XProgressBar
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:xProgressAlpha="150"
+                app:xProgressColor="#df11ea"
+                app:xProgressDelay="0"
+                app:xProgressDuration="800"
+                app:xProgressStyle="xWave" />
+
+            <lbx.xview.views.progress.XProgressBar
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:xProgressAlpha="150"
+                app:xProgressColor="#bd73f2"
+                app:xProgressDelay="0"
+                app:xProgressDuration="800"
+                app:xProgressStyle="xPyramidBounds" />
+
+            <lbx.xview.views.progress.XProgressBar
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:xProgressAlpha="150"
+                app:xProgressColor="#0c10de"
+                app:xProgressDelay="0"
+                app:xProgressDuration="800"
+                app:xProgressStyle="xWanderingCubes" />
+
+            <lbx.xview.views.progress.XProgressBar
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:xProgressAlpha="150"
+                app:xProgressColor="#0cde9f"
+                app:xProgressDelay="0"
+                app:xProgressDuration="800"
+                app:xProgressStyle="xRing" />
+
+            <lbx.xview.views.progress.XProgressBar
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:xProgressAlpha="150"
+                app:xProgressColor="#fa36a2"
+                app:xProgressDelay="0"
+                app:xProgressDuration="1200"
+                app:xProgressStyle="xDoubleBoundsVariation" />
+
+            <lbx.xview.views.progress.XProgressBar
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:xProgressAlpha="150"
+                app:xProgressColor="#f75c4e"
+                app:xProgressDelay="0"
+                app:xProgressDuration="1500"
+                app:xProgressStyle="xWheel" />
+
+            <lbx.xview.views.progress.XProgressBar
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:xProgressAlpha="150"
+                app:xProgressColor="#00ffe5"
+                app:xProgressDelay="0"
+                app:xProgressDuration="1500"
+                app:xProgressStyle="xSplitCube" />
+
+            <lbx.xview.views.progress.XProgressBar
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                app:xProgressAlpha="150"
+                app:xProgressColor="#90f48e"
+                app:xProgressDelay="0"
+                app:xProgressDuration="800"
+                app:xProgressStyle="xSplitCubeVariation" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</layout>

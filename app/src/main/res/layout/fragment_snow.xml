@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <lbx.xview.views.snow.XSnowLayout
+            android:id="@+id/snowLayout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#8841afd7"
+            app:xSnowdriftAccumulation="0"
+            app:xSnowdriftDuration="5000"
+            app:xSnowdriftImageSize="80px"
+            app:xSnowdriftSpeed="300">
+
+        </lbx.xview.views.snow.XSnowLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="开始透明度" />
+
+                    <android.support.v7.widget.AppCompatSeekBar
+                        android:id="@+id/bar_alpha_s"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:max="255"
+                        android:progress="255" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="结束透明度" />
+
+                    <android.support.v7.widget.AppCompatSeekBar
+                        android:id="@+id/bar_alpha"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:max="255"
+                        android:progress="255" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="图片的大小" />
+
+                    <android.support.v7.widget.AppCompatSeekBar
+                        android:id="@+id/bar_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:max="200"
+                        android:progress="80" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="图片堆积量" />
+
+                    <android.support.v7.widget.AppCompatSeekBar
+                        android:id="@+id/bar_accumulation"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:max="50"
+                        android:progress="0" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="图片发射率" />
+
+                    <android.support.v7.widget.AppCompatSeekBar
+                        android:id="@+id/bar_speed"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:max="3000"
+                        android:progress="300" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="飘落的速度" />
+
+                    <android.support.v7.widget.AppCompatSeekBar
+                        android:id="@+id/bar_duration"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:max="10000"
+                        android:progress="5000" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_start"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="开始" />
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="取消" />
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>
