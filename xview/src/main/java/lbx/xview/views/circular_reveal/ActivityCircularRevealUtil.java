@@ -29,24 +29,24 @@ import android.view.animation.AccelerateDecelerateInterpolator;
  * .      ┗┻┛　┗┻┛
  *
  * @author lbx
- * @date 2019/1/22
+ * @date 2019/1/23
  */
-public class CircularRevealUtil {
+public class ActivityCircularRevealUtil {
 
-    private static CircularRevealUtil INSTANCE;
+    private static ActivityCircularRevealUtil INSTANCE;
 
-    public static CircularRevealUtil getInstance() {
+    static ActivityCircularRevealUtil getInstance() {
         if (INSTANCE == null) {
-            synchronized (CircularRevealUtil.class) {
+            synchronized (ActivityCircularRevealUtil.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = new CircularRevealUtil();
+                    INSTANCE = new ActivityCircularRevealUtil();
                 }
             }
         }
         return INSTANCE;
     }
 
-    private CircularRevealUtil() {
+    private ActivityCircularRevealUtil() {
     }
 
     /**
@@ -88,10 +88,26 @@ public class CircularRevealUtil {
      * @param centerY  圆心y坐标
      * @param reversed 反转动画
      */
-    public void setCircularRevealAnim(ICircularReveal reveal, int centerX, int centerY, boolean reversed) {
+    public void setCircularRevealAnim(ICircularReveal reveal, int centerX,
+                                      int centerY, boolean reversed) {
+        setCircularRevealAnim(reveal, centerX, centerY, reversed, null);
+    }
+
+    /**
+     * 对rootView开始CircularReveal动画，一般用在被跳转页面
+     *
+     * @param reveal   ICircularReveal
+     * @param centerX  圆心x坐标
+     * @param centerY  圆心y坐标
+     * @param reversed 反转动画
+     * @param listener listener
+     */
+    public void setCircularRevealAnim(ICircularReveal reveal, int centerX,
+                                      int centerY, boolean reversed, Animator.AnimatorListener listener) {
         reveal.getRootView().post(() -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Animator animator = createRevealAnimator(reveal.getActivity(), reveal.getRootView(), centerX, centerY, reversed);
+                Animator animator = createRevealAnimator(reveal.getActivity(),
+                        reveal.getRootView(), centerX, centerY, reversed, listener);
                 animator.start();
             }
         });
@@ -107,7 +123,21 @@ public class CircularRevealUtil {
      * @param reversed ICircularReveal
      * @return Animator
      */
-    private Animator createRevealAnimator(Activity activity, View rootView, int x, int y, boolean reversed) {
+    public Animator createRevealAnimator(Activity activity, View rootView, int x, int y, boolean reversed) {
+        return createRevealAnimator(activity, rootView, x, y, reversed, null);
+    }
+
+    /**
+     * @param activity activity activity
+     * @param rootView rootView xml中根部布局的view
+     * @param x        x        圆心x坐标
+     * @param y        y        圆心y坐标
+     * @param reversed reversed ICircularReveal
+     * @param listener listener
+     * @return Animator
+     */
+    public Animator createRevealAnimator(Activity activity, View rootView,
+                                         int x, int y, boolean reversed, Animator.AnimatorListener listener) {
         float hypot = (float) Math.hypot(rootView.getHeight(), rootView.getWidth());
         float startRadius = reversed ? hypot : 0;
         float endRadius = reversed ? 0 : hypot;
@@ -118,7 +148,7 @@ public class CircularRevealUtil {
                 endRadius);
         animator.setDuration(800);
         animator.setInterpolator(new AccelerateDecelerateInterpolator());
-        if (reversed) {
+        if (reversed && listener == null) {
             animator.addListener(new Animator.AnimatorListener() {
                 @Override
                 public void onAnimationStart(Animator animation) {
@@ -142,6 +172,8 @@ public class CircularRevealUtil {
 
                 }
             });
+        } else {
+            animator.addListener(listener);
         }
         return animator;
     }

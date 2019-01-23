@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.lbx.xviewdemo.R;
+import com.lbx.xviewdemo.circular.activitydemo.FirstActivity;
+import com.lbx.xviewdemo.circular.viewdemo.CircularButtonActivity;
 
 
 /**
@@ -47,9 +49,14 @@ public class CircularFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_circular, container, false);
-        Button button = view.findViewById(R.id.btn_circular);
-        button.setOnClickListener(v -> {
+        Button button1 = view.findViewById(R.id.btn_circular1);
+        button1.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), FirstActivity.class);
+            startActivity(intent);
+        });
+        Button button2 = view.findViewById(R.id.btn_circular2);
+        button2.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), CircularButtonActivity.class);
             startActivity(intent);
         });
         return view;

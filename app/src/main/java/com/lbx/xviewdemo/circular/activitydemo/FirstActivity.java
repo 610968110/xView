@@ -1,4 +1,4 @@
-package com.lbx.xviewdemo.circular;
+package com.lbx.xviewdemo.circular.activitydemo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.lbx.xviewdemo.R;
 
-import lbx.xview.views.circular_reveal.CircularRevealUtil;
+import lbx.xview.views.circular_reveal.CircularRevealUtils;
 
 /**
  * .  ┏┓　　　┏┓
@@ -44,7 +44,7 @@ public class FirstActivity extends AppCompatActivity implements View.OnTouchList
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        Intent intent = CircularRevealUtil.getInstance()
+        Intent intent = CircularRevealUtils.ActivityCircularReveal()
                 .makeCircularRevealIntent(this,
                         CircularRevealActivity.class,
                         (int) event.getX(),

@@ -1,4 +1,4 @@
-package com.lbx.xviewdemo.circular;
+package com.lbx.xviewdemo.circular.activitydemo;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.lbx.xviewdemo.R;
 
-import lbx.xview.views.circular_reveal.CircularRevealUtil;
+import lbx.xview.views.circular_reveal.CircularRevealUtils;
 import lbx.xview.views.circular_reveal.ICircularReveal;
 
 /**
@@ -42,14 +42,14 @@ public class CircularRevealActivity extends AppCompatActivity implements ICircul
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         content = findViewById(R.id.reveal_content);
-        CircularRevealUtil.getInstance().setCircularRevealAnim(this, false);
+        CircularRevealUtils.ActivityCircularReveal().setCircularRevealAnim(this, false);
         content.setOnTouchListener(this);
     }
 
 
     @Override
     public void onBackPressed() {
-        CircularRevealUtil.getInstance().onBackPressed(this, 500, 500);
+        CircularRevealUtils.ActivityCircularReveal().onBackPressed(this, 500, 500);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class CircularRevealActivity extends AppCompatActivity implements ICircul
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        CircularRevealUtil.getInstance().setCircularRevealAnim(
+        CircularRevealUtils.ActivityCircularReveal().setCircularRevealAnim(
                 this, (int) event.getX(),
                 (int) event.getY(), true);
         return false;
