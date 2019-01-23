@@ -9,4 +9,12 @@
         <item name="android:maxHeight">30dp</item>
     </style>
 
+    <style name="CircularRevealAnimTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+
 </resources>

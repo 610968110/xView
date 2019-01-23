@@ -27,7 +27,7 @@
             android:name=".circular.CircularRevealActivity"
             android:configChanges="keyboardHidden|keyboard|orientation"
             android:screenOrientation="portrait"
-            android:theme="@style/noAnimTheme" />
+            android:theme="@style/CircularRevealAnimTheme" />
 
     </application>
 

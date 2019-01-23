@@ -66,7 +66,7 @@ public class CircularRevealActivity extends AppCompatActivity implements ICircul
     public boolean onTouch(View v, MotionEvent event) {
         CircularRevealUtil.getInstance().setCircularRevealAnim(
                 this, (int) event.getX(),
-                (int) event.getY(), false);
+                (int) event.getY(), true);
         return false;
     }
 }
