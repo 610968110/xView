@@ -136,8 +136,8 @@ public class ActivityCircularRevealUtil {
      * @param listener listener
      * @return Animator
      */
-    public Animator createRevealAnimator(Activity activity, View rootView,
-                                         int x, int y, boolean reversed, Animator.AnimatorListener listener) {
+    public Animator createRevealAnimator(Activity activity, View rootView, int x, int y,
+                                         boolean reversed, Animator.AnimatorListener listener) {
         float hypot = (float) Math.hypot(rootView.getHeight(), rootView.getWidth());
         float startRadius = reversed ? hypot : 0;
         float endRadius = reversed ? 0 : hypot;
@@ -173,7 +173,9 @@ public class ActivityCircularRevealUtil {
                 }
             });
         } else {
-            animator.addListener(listener);
+            if (listener != null) {
+                animator.addListener(listener);
+            }
         }
         return animator;
     }
@@ -185,12 +187,13 @@ public class ActivityCircularRevealUtil {
      * @param x      圆心x坐标
      * @param y      圆心y坐标
      */
-    public void onBackPressed(ICircularReveal reveal, int x, int y) {
+    public void onBackPressed(ICircularReveal reveal, int x, int y, Animator.AnimatorListener listener) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Animator animator = createRevealAnimator(reveal.getActivity(), reveal.getRootView(), x, y, true);
+            if (listener != null) {
+                animator.addListener(listener);
+            }
             animator.start();
-        } else {
-            reveal.getActivity().finish();
         }
     }
 }

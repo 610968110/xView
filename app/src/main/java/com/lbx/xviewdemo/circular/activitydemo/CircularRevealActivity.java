@@ -49,7 +49,7 @@ public class CircularRevealActivity extends AppCompatActivity implements ICircul
 
     @Override
     public void onBackPressed() {
-        CircularRevealUtils.ActivityCircularReveal().onBackPressed(this, 500, 500);
+        CircularRevealUtils.ActivityCircularReveal().onBackPressed(this, 500, 500, null);
     }
 
     @Override
