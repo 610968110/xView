@@ -32,6 +32,10 @@
             android:name=".circular.viewdemo.CircularButtonActivity"
             android:configChanges="keyboardHidden|keyboard|orientation"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".circular.materialdemo.MaterialActivity"
+            android:configChanges="keyboardHidden|keyboard|orientation"
+            android:screenOrientation="portrait" />
 
     </application>
 

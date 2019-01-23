@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <!--底层布局 动画前显示-->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:padding="15dp"
+        android:src="@drawable/ic_launcher_round" />
+
+    <!--顶层布局 动画后显示-->
+    <FrameLayout
+        android:id="@+id/linearView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#c96767"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#43e0ff"
+            android:text="close"
+            android:textColor="#ffffff" />
+
+    </FrameLayout>
+
+    <!--下方始终显示的布局 -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/imageView"
+        android:background="#4672e2"
+        android:gravity="center"
+        android:text="我是文字我是文字我是文字我是文字"
+        android:textColor="#000000"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <!--动画按钮-->
+    <ImageButton
+        android:id="@+id/launchTwitterAnimation"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_below="@id/imageView"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-28dp"
+        android:layout_marginEnd="20dp"
+        android:adjustViewBounds="true"
+        android:background="@mipmap/ic_launcher"
+        android:elevation="4dp"
+        android:src="@mipmap/ic_launcher" />
+
+</RelativeLayout>

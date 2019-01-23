@@ -16,4 +16,10 @@
         android:layout_height="wrap_content"
         android:text="过场动画2" />
 
+    <Button
+        android:id="@+id/btn_circular3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="过场动画3" />
+
 </LinearLayout>

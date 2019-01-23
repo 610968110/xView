@@ -20,7 +20,7 @@ import android.widget.ImageView;
  *
  * @author ice
  */
-public class CircularAnim {
+class CircularAnim {
 
     public static final long PERFECT_MILLS = 618;
     public static final int MINI_RADIUS = 0;
@@ -30,7 +30,7 @@ public class CircularAnim {
     }
 
     @SuppressLint("NewApi")
-    public static class VisibleBuilder {
+    static class VisibleBuilder {
 
         private View mAnimView, mTriggerView;
 
@@ -42,7 +42,7 @@ public class CircularAnim {
 
         private OnAnimationEndListener mOnAnimationEndListener;
 
-        public VisibleBuilder(View animView, boolean isShow) {
+        VisibleBuilder(View animView, boolean isShow) {
             mAnimView = animView;
             this.isShow = isShow;
 
@@ -53,28 +53,29 @@ public class CircularAnim {
             }
         }
 
-        public VisibleBuilder triggerView(View triggerView) {
+        VisibleBuilder triggerView(View triggerView) {
             mTriggerView = triggerView;
             return this;
         }
 
-        public VisibleBuilder startRadius(float startRadius) {
+        VisibleBuilder startRadius(float startRadius) {
             mStartRadius = startRadius;
             return this;
         }
 
-        public VisibleBuilder endRadius(float endRadius) {
+        VisibleBuilder endRadius(float endRadius) {
             mEndRadius = endRadius;
             return this;
         }
 
-        public VisibleBuilder duration(long durationMills) {
+        VisibleBuilder duration(long durationMills) {
             mDurationMills = durationMills;
             return this;
         }
 
-        @Deprecated //You can use method - go(OnAnimationEndListener onAnimationEndListener).
-        public VisibleBuilder onAnimationEndListener(OnAnimationEndListener onAnimationEndListener) {
+        @Deprecated
+            //You can use method - go(OnAnimationEndListener onAnimationEndListener).
+        VisibleBuilder onAnimationEndListener(OnAnimationEndListener onAnimationEndListener) {
             mOnAnimationEndListener = onAnimationEndListener;
             return this;
         }
@@ -83,7 +84,7 @@ public class CircularAnim {
             go(null);
         }
 
-        public void go(OnAnimationEndListener onAnimationEndListener) {
+        void go(OnAnimationEndListener onAnimationEndListener) {
             mOnAnimationEndListener = onAnimationEndListener;
 
             // 版本判断
@@ -174,7 +175,7 @@ public class CircularAnim {
     }
 
     @SuppressLint("NewApi")
-    public static class FullActivityBuilder {
+    static class FullActivityBuilder {
         private Activity mActivity;
         private View mTriggerView;
         private float mStartRadius = MINI_RADIUS;
@@ -183,33 +184,33 @@ public class CircularAnim {
         private OnAnimationEndListener mOnAnimationEndListener;
         private int mEnterAnim = android.R.anim.fade_in, mExitAnim = android.R.anim.fade_out;
 
-        public FullActivityBuilder(Activity activity, View triggerView) {
+        FullActivityBuilder(Activity activity, View triggerView) {
             mActivity = activity;
             mTriggerView = triggerView;
         }
 
-        public FullActivityBuilder startRadius(float startRadius) {
+        FullActivityBuilder startRadius(float startRadius) {
             mStartRadius = startRadius;
             return this;
         }
 
-        public FullActivityBuilder colorOrImageRes(int colorOrImageRes) {
+        FullActivityBuilder colorOrImageRes(int colorOrImageRes) {
             mColorOrImageRes = colorOrImageRes;
             return this;
         }
 
-        public FullActivityBuilder duration(long durationMills) {
+        FullActivityBuilder duration(long durationMills) {
             mDurationMills = durationMills;
             return this;
         }
 
-        public FullActivityBuilder overridePendingTransition(int enterAnim, int exitAnim) {
+        FullActivityBuilder overridePendingTransition(int enterAnim, int exitAnim) {
             mEnterAnim = enterAnim;
             mExitAnim = exitAnim;
             return this;
         }
 
-        public void go(OnAnimationEndListener onAnimationEndListener) {
+        void go(OnAnimationEndListener onAnimationEndListener) {
             mOnAnimationEndListener = onAnimationEndListener;
 
             // 版本判断,小于5.0则无动画.
@@ -309,17 +310,17 @@ public class CircularAnim {
 
 
     /* 伸展并显示@animView */
-    public static VisibleBuilder show(View animView) {
+    static VisibleBuilder show(View animView) {
         return new VisibleBuilder(animView, true);
     }
 
     /* 收缩并隐藏@animView */
-    public static VisibleBuilder hide(View animView) {
+    static VisibleBuilder hide(View animView) {
         return new VisibleBuilder(animView, false);
     }
 
     /* 以@triggerView 为触发点铺满整个@activity */
-    public static FullActivityBuilder fullActivity(Activity activity, View triggerView) {
+    static FullActivityBuilder fullActivity(Activity activity, View triggerView) {
         return new FullActivityBuilder(activity, triggerView);
     }
 

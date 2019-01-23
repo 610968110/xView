@@ -1,6 +1,6 @@
 package lbx.xview.views.circular_reveal;
 
-import android.content.Context;
+import android.view.View;
 
 /**
  * .  ┏┓　　　┏┓
@@ -22,19 +22,27 @@ import android.content.Context;
  * .      ┗┻┛　┗┻┛
  *
  * @author lbx
- * @date 2019/1/22
+ * @date 2019/1/23.
  */
-public class CircularRevealUtils {
+public interface IMaterial {
 
-    public static ActivityCircularRevealUtil ActivityCircularReveal() {
-        return ActivityCircularRevealUtil.getInstance();
-    }
+    /**
+     * @return 动画控制的button
+     */
+    View getFloatingButton();
 
-    public static ViewCircularRevealUtil ViewCircularRevealUtil() {
-        return ViewCircularRevealUtil.getInstance();
-    }
+    /**
+     * @return 动画后显示页面的根布局
+     */
+    View getTopView();
 
-    public static MaterialUtil MaterialUtil(Context context) {
-        return MaterialUtil.getInstance(context);
-    }
+    /**
+     * @return 动画后显示页面的根布局中的所有子view，动画前会隐藏这些view，动画后会给这些子view显示出来
+     */
+    View[] getTopChildView();
+
+    /**
+     * @return 动画前显示页面的根布局
+     */
+    View getBottomView();
 }
