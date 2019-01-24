@@ -119,24 +119,25 @@ task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier = 'sources'
 }
-//生成Javadoc文档
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-//文档打包成jar
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-//拷贝javadoc文件
-task copyDoc(type: Copy) {
-    from "${buildDir}/docs/"
-    into "docs"
-}
+////生成Javadoc文档
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//    javadoc.options.encoding("utf-8")
+//}
+////文档打包成jar
+//task javadocJar(type: Jar, dependsOn: javadoc) {
+//    classifier = 'javadoc'
+//    from javadoc.destinationDir
+//}
+////拷贝javadoc文件
+//task copyDoc(type: Copy) {
+//    from "${buildDir}/docs/"
+//    into "docs"
+//}
 //上传到JCenter所需要的源码文件
 artifacts {
-    archives javadocJar
+//    archives javadocJar
     archives sourcesJar
 }
 
@@ -196,13 +197,13 @@ bintray {
     }
 }
 
-javadoc {
-    options {
-        //如果你的项目里面有中文注释的话，必须将格式设置为UTF-8，不然会出现乱码
-        encoding "UTF-8"
-        charSet 'UTF-8'
-        author true
-        version true
-        links "http://docs.oracle.com/javase/7/docs/api"
-    }
-}
+//javadoc {
+//    options {
+//        //如果你的项目里面有中文注释的话，必须将格式设置为UTF-8，不然会出现乱码
+//        encoding "UTF-8"
+//        charSet 'UTF-8'
+//        author true
+//        version true
+//        links "http://docs.oracle.com/javase/7/docs/api"
+//    }
+//}

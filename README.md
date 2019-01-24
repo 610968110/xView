@@ -6,7 +6,21 @@ xView是一个包含有若干个自定义控件的框架，目前还在持续开
 compile 'com.lbx:xView:1.0.1'
 ````
 
-## 1、各种进度条 XProgressBar
+## 1、更新说明
+
+v1.0.1 增加了7种进度条的款式
+
+* xWanderingCubes
+* xPyramidBounds
+* xRing
+* xDoubleBoundsVariation
+* xWheel
+* xSplitCube
+* xSplitCubeVariation
+
+v1.0.2 增加了CircularReveal样式
+
+## 2、各种进度条 XProgressBar
 
 <img src="./gif/1.gif"  width="40%" height="40%">
 
@@ -43,7 +57,7 @@ xSplitCube | 拆分立方体
 xSplitCubeVariation | 拆分立方体2
 …… | 其他还在陆续开发中
 
-## 2、球形波浪进度条 XWaveView
+## 3、球形波浪进度条 XWaveView
 
 <img src="./gif/2.gif"  width="40%" height="40%">
 
@@ -87,7 +101,7 @@ xWaveTextSize | 文字大小
     handler.sendEmptyMessageDelayed(0, 3000);
 ````
 
-## 3、仿直播点赞控件 XPraiseLayout
+## 4、仿直播点赞控件 XPraiseLayout
 
 <img src="./gif/3.gif"  width="40%" height="40%">
 
@@ -120,7 +134,7 @@ praiseLayout.setResources(R.drawable.green_heart, R.drawable.red_heart, R.drawab
 view.findViewById(R.id.btn_praise).setOnClickListener(v -> praiseLayout.praise());
 ````
 
-## 4、雪花飘落控件 XSnowLayout
+## 5、雪花飘落控件 XSnowLayout
 
 <img src="./gif/4.gif"  width="40%" height="40%">
 
@@ -169,7 +183,7 @@ snowLayout.setDuration(int);
 
 ````
 
-## 5、盒子控件 XFloodLayout
+## 6、盒子控件 XFloodLayout
 
 <img src="./gif/5.gif"  width="40%" height="40%">
 
@@ -197,14 +211,70 @@ floodLayout.isFlood()
  floodLayout.setOnFloodUpdateListener(listener);
 ````
 
-## 6、更新说明
+## 7、CircularReveal样式
 
-v1.0.1 增加了7种进度条的款式
+### 7.1 启动一个CircularReveal样式的Activity
 
-* xWanderingCubes
-* xPyramidBounds
-* xRing
-* xDoubleBoundsVariation
-* xWheel
-* xSplitCube
-* xSplitCubeVariation
+<img src="./gif/6.gif"  width="40%" height="40%">
+
+在第一个页面获取Intent：
+
+````Java
+        Intent intent = CircularRevealUtils.ActivityCircularReveal()
+                .makeCircularRevealIntent(this,
+                        CircularRevealActivity.class,
+                        (int) event.getX(),
+                        (int) event.getY());
+        startActivity(intent);
+````
+
+CircularRevealActivity中的逻辑：
+* 首先需要实现接口 ICircularReveal，其中getActivity()返回为当前的Activity，
+getRootView()返回为xml中的根布局，本框架会使用根布局做动画效果。
+* 然后再OnCreate方法里：
+````Java
+CircularRevealUtils.ActivityCircularReveal().setCircularRevealAnim(this, false);
+````
+* 如果返回键需要动画效果：
+````Java
+    @Override
+    public void onBackPressed() {
+        CircularRevealUtils.ActivityCircularReveal().onBackPressed(this, 500, 500, null);
+    }
+````
+
+* 如果点击某个按钮关闭页面，则以按钮为中心做动画：
+````Java
+        CircularRevealUtils.ActivityCircularReveal().setCircularRevealAnim(
+                this, x, y, true);
+````
+
+### 7.2 点击Button显示一个CircularReveal样式的View
+<img src="./gif/7.gif"  width="40%" height="40%">
+````Java
+        if (secondView.getVisibility() == View.INVISIBLE) {
+            CircularRevealUtils.ViewCircularRevealUtil().showFloatingViewByClickView(v, secondView);
+        } else {
+            CircularRevealUtils.ViewCircularRevealUtil().goneFloatingViewByClickView(v, secondView);
+        }
+````
+
+### 7.3 点击Button显示一个CircularReveal样式的卡片
+<img src="./gif/8.gif"  width="40%" height="40%">
+* 首先页面需要实现IMaterial接口，其中getFloatingButton()返回动画按钮，
+getTopView()返回动画后需要显示的页面，getBottomView()返回动画前默认的页面，
+getTopChildView()返回动画后需要显示的页面则子View，动画完成后显示这些子View，
+给用户良好的动画视觉体验。
+* 然后通过下方方法控制卡片显示与隐藏:
+````Java
+//显示
+CircularRevealUtils.MaterialUtil(this).launchTwitter(context);
+//隐藏
+CircularRevealUtils.MaterialUtil(this).closeTwitter(context);
+````
+
+### 7.4 Button与ProgressBar的转换
+<img src="./gif/9.gif"  width="40%" height="40%">
+控件： lbx.xview.views.circular_reveal.CircularButton ,其实就是原生的
+Button与ProgressBar做的动画，可以使用
+CircularButton#change(CircularButton.CircularButtonStyle)方法进行转换。
