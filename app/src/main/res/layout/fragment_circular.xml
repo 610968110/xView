@@ -22,4 +22,9 @@
         android:layout_height="wrap_content"
         android:text="过场动画3" />
 
+    <lbx.xview.views.circular_reveal.CircularButton
+        android:id="@+id/cb_main"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
 </LinearLayout>

@@ -14,6 +14,8 @@ import com.lbx.xviewdemo.circular.activitydemo.FirstActivity;
 import com.lbx.xviewdemo.circular.materialdemo.MaterialActivity;
 import com.lbx.xviewdemo.circular.viewdemo.CircularButtonActivity;
 
+import lbx.xview.views.circular_reveal.CircularButton;
+
 
 /**
  * .  ┏┓　　　┏┓
@@ -38,6 +40,8 @@ import com.lbx.xviewdemo.circular.viewdemo.CircularButtonActivity;
  * @date 2019/1/22.
  */
 public class CircularFragment extends Fragment {
+
+    private boolean isButton = true;
 
     public static CircularFragment newInstance() {
         Bundle args = new Bundle();
@@ -64,6 +68,13 @@ public class CircularFragment extends Fragment {
         button3.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), MaterialActivity.class);
             startActivity(intent);
+        });
+        CircularButton circularButton = view.findViewById(R.id.cb_main);
+        circularButton.setOnClickListener(v -> {
+            circularButton.change(isButton ?
+                    CircularButton.CircularButtonStyle.TYPE_PROGRESS :
+                    CircularButton.CircularButtonStyle.TYPE_BUTTON);
+            isButton = !isButton;
         });
         return view;
     }
