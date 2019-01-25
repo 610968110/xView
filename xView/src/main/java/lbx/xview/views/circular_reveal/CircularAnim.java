@@ -25,10 +25,6 @@ class CircularAnim {
     public static final long PERFECT_MILLS = 618;
     public static final int MINI_RADIUS = 0;
 
-    public interface OnAnimationEndListener {
-        void onAnimationEnd();
-    }
-
     @SuppressLint("NewApi")
     static class VisibleBuilder {
 
@@ -40,7 +36,7 @@ class CircularAnim {
 
         private boolean isShow;
 
-        private OnAnimationEndListener mOnAnimationEndListener;
+        private CircularButton.OnAnimationEndListener mOnAnimationEndListener;
 
         VisibleBuilder(View animView, boolean isShow) {
             mAnimView = animView;
@@ -75,7 +71,7 @@ class CircularAnim {
 
         @Deprecated
             //You can use method - go(OnAnimationEndListener onAnimationEndListener).
-        VisibleBuilder onAnimationEndListener(OnAnimationEndListener onAnimationEndListener) {
+        VisibleBuilder onAnimationEndListener(CircularButton.OnAnimationEndListener onAnimationEndListener) {
             mOnAnimationEndListener = onAnimationEndListener;
             return this;
         }
@@ -84,7 +80,7 @@ class CircularAnim {
             go(null);
         }
 
-        void go(OnAnimationEndListener onAnimationEndListener) {
+        void go(CircularButton.OnAnimationEndListener onAnimationEndListener) {
             mOnAnimationEndListener = onAnimationEndListener;
 
             // 版本判断
@@ -181,7 +177,7 @@ class CircularAnim {
         private float mStartRadius = MINI_RADIUS;
         private int mColorOrImageRes = android.R.color.white;
         private Long mDurationMills;
-        private OnAnimationEndListener mOnAnimationEndListener;
+        private CircularButton.OnAnimationEndListener mOnAnimationEndListener;
         private int mEnterAnim = android.R.anim.fade_in, mExitAnim = android.R.anim.fade_out;
 
         FullActivityBuilder(Activity activity, View triggerView) {
@@ -210,7 +206,7 @@ class CircularAnim {
             return this;
         }
 
-        void go(OnAnimationEndListener onAnimationEndListener) {
+        void go(CircularButton.OnAnimationEndListener onAnimationEndListener) {
             mOnAnimationEndListener = onAnimationEndListener;
 
             // 版本判断,小于5.0则无动画.

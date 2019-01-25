@@ -65,21 +65,29 @@ public class CircularButton extends FrameLayout {
     }
 
     public void change(@CircularButtonStyle int style) {
+        change(style, 0, null);
+    }
+
+    public void change(@CircularButtonStyle int style, float endRadius) {
+        change(style, endRadius, null);
+    }
+
+    public void change(@CircularButtonStyle int style, float endRadius, OnAnimationEndListener listener) {
         switch (style) {
             case CircularButtonStyle.TYPE_BUTTON:
                 mProgressBar.setVisibility(View.INVISIBLE);
                 // 伸展按钮
-                CircularAnim.show(mButton).go();
+                CircularAnim.show(mButton).endRadius(endRadius).go(listener);
                 break;
             case CircularButtonStyle.TYPE_PROGRESS:
                 mProgressBar.setVisibility(View.VISIBLE);
                 // 收缩按钮
-                CircularAnim.hide(mButton).go();
+                CircularAnim.hide(mButton).endRadius(endRadius).go(listener);
                 break;
             default:
                 mProgressBar.setVisibility(View.INVISIBLE);
                 // 伸展按钮
-                CircularAnim.show(mButton).go();
+                CircularAnim.show(mButton).endRadius(endRadius).go(listener);
                 style = CircularButtonStyle.TYPE_BUTTON;
                 break;
         }
@@ -97,4 +105,9 @@ public class CircularButton extends FrameLayout {
     public View getButton() {
         return mButton;
     }
+
+    public interface OnAnimationEndListener {
+        void onAnimationEnd();
+    }
+
 }
