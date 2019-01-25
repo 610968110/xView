@@ -3,6 +3,7 @@ package lbx.xview.views.wave;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -181,7 +182,7 @@ public class XWaveView extends View {
      *
      * @param progress 进度
      * @param duration 动画时间
-     * @param delay 延时
+     * @param delay    延时
      */
     public void setWaveProgress(int progress, long duration, long delay) {
         mProgress = progress;
@@ -333,11 +334,14 @@ public class XWaveView extends View {
             public void onAnimationRepeat(Animator animation) {
             }
         });
-        mProgressAnimator.addUpdateListener(valueAnimator -> {
-            //改变曲线的偏移，达到波浪运动的效果
-            mOffsetA += mWaveSpeedA;
-            mOffsetB += mWaveSpeedB;
-            invalidate();
+        mProgressAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                //改变曲线的偏移，达到波浪运动的效果
+                mOffsetA += mWaveSpeedA;
+                mOffsetB += mWaveSpeedB;
+                invalidate();
+            }
         });
         mProgressAnimator.start();
     }
@@ -374,11 +378,14 @@ public class XWaveView extends View {
             public void onAnimationRepeat(Animator animation) {
             }
         });
-        mWaveStopAnimator.addUpdateListener(valueAnimator -> {
-            //改变曲线的偏移，达到波浪运动的效果
-            mOffsetA += mWaveSpeedA;
-            mOffsetB += mWaveSpeedB;
-            invalidate();
+        mWaveStopAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                //改变曲线的偏移，达到波浪运动的效果
+                mOffsetA += mWaveSpeedA;
+                mOffsetB += mWaveSpeedB;
+                invalidate();
+            }
         });
     }
 

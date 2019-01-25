@@ -55,14 +55,24 @@ public class SnowFragment extends Fragment {
     }
 
     private void initView(View view) {
-        XSnowLayout snowLayout = view.findViewById(R.id.snowLayout);
+        final XSnowLayout snowLayout = view.findViewById(R.id.snowLayout);
         snowLayout.setResources(R.drawable.red_heart, R.drawable.green_heart, R.drawable.white_heart);
 
         //设置插值器  每个❤会随机抽取其中一个
         snowLayout.setInterpolators(new LinearInterpolator(), new DecelerateInterpolator(), new AccelerateDecelerateInterpolator());
 
-        view.findViewById(R.id.btn_start).setOnClickListener(v -> snowLayout.startAnimation());
-        view.findViewById(R.id.btn_cancel).setOnClickListener(v -> snowLayout.cancelAnimation());
+        view.findViewById(R.id.btn_start).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                snowLayout.startAnimation();
+            }
+        });
+        view.findViewById(R.id.btn_cancel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                snowLayout.cancelAnimation();
+            }
+        });
         AppCompatSeekBar alphaS = view.findViewById(R.id.bar_alpha_s);
         AppCompatSeekBar alpha = view.findViewById(R.id.bar_alpha);
         AppCompatSeekBar size = view.findViewById(R.id.bar_size);

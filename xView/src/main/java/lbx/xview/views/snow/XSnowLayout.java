@@ -109,7 +109,17 @@ public class XSnowLayout extends BaseSnowdriftLayout {
             if (mSpeed <= 0) {
                 mSpeed = 10;
             }
-            mService.scheduleAtFixedRate(() -> AnimationUtils.runOnUI(this::praise), de, mSpeed, TimeUnit.MILLISECONDS);
+            mService.scheduleAtFixedRate(new Runnable() {
+                @Override
+                public void run() {
+                    AnimationUtils.runOnUI(new Runnable() {
+                        @Override
+                        public void run() {
+                            praise();
+                        }
+                    });
+                }
+            }, de, mSpeed, TimeUnit.MILLISECONDS);
         }
     }
 

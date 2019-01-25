@@ -40,13 +40,16 @@ public class CircularButtonActivity extends AppCompatActivity {
         setContentView(R.layout.layout_circular_button);
 
         FloatingActionButton floatBtn = findViewById(R.id.floatBtn);
-        View secondView = findViewById(R.id.second);
+        final View secondView = findViewById(R.id.second);
 
-        floatBtn.setOnClickListener(v -> {
-            if (secondView.getVisibility() == View.INVISIBLE) {
-                CircularRevealUtils.ViewCircularRevealUtil().showFloatingViewByClickView(v, secondView);
-            } else {
-                CircularRevealUtils.ViewCircularRevealUtil().goneFloatingViewByClickView(v, secondView);
+        floatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (secondView.getVisibility() == View.INVISIBLE) {
+                    CircularRevealUtils.ViewCircularRevealUtil().showFloatingViewByClickView(v, secondView);
+                } else {
+                    CircularRevealUtils.ViewCircularRevealUtil().goneFloatingViewByClickView(v, secondView);
+                }
             }
         });
     }

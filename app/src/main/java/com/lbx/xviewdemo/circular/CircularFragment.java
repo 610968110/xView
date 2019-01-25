@@ -55,26 +55,38 @@ public class CircularFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_circular, container, false);
         Button button1 = view.findViewById(R.id.btn_circular1);
-        button1.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), FirstActivity.class);
-            startActivity(intent);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), FirstActivity.class);
+                startActivity(intent);
+            }
         });
         Button button2 = view.findViewById(R.id.btn_circular2);
-        button2.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), CircularButtonActivity.class);
-            startActivity(intent);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CircularButtonActivity.class);
+                startActivity(intent);
+            }
         });
         Button button3 = view.findViewById(R.id.btn_circular3);
-        button3.setOnClickListener(v -> {
-            Intent intent = new Intent(getContext(), MaterialActivity.class);
-            startActivity(intent);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MaterialActivity.class);
+                startActivity(intent);
+            }
         });
-        CircularButton circularButton = view.findViewById(R.id.cb_main);
-        circularButton.setOnClickListener(v -> {
-            circularButton.change(isButton ?
-                    CircularButton.CircularButtonStyle.TYPE_PROGRESS :
-                    CircularButton.CircularButtonStyle.TYPE_BUTTON);
-            isButton = !isButton;
+        final CircularButton circularButton = view.findViewById(R.id.cb_main);
+        circularButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                circularButton.change(isButton ?
+                        CircularButton.CircularButtonStyle.TYPE_PROGRESS :
+                        CircularButton.CircularButtonStyle.TYPE_BUTTON);
+                isButton = !isButton;
+            }
         });
         return view;
     }

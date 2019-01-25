@@ -102,13 +102,17 @@ public class ActivityCircularRevealUtil {
      * @param reversed 反转动画
      * @param listener listener
      */
-    public void setCircularRevealAnim(ICircularReveal reveal, int centerX,
-                                      int centerY, boolean reversed, Animator.AnimatorListener listener) {
-        reveal.getRootView().post(() -> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Animator animator = createRevealAnimator(reveal.getActivity(),
-                        reveal.getRootView(), centerX, centerY, reversed, listener);
-                animator.start();
+    public void setCircularRevealAnim(final ICircularReveal reveal, final int centerX,
+                                      final int centerY, final boolean reversed,
+                                      final Animator.AnimatorListener listener) {
+        reveal.getRootView().post(new Runnable() {
+            @Override
+            public void run() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    Animator animator = createRevealAnimator(reveal.getActivity(),
+                            reveal.getRootView(), centerX, centerY, reversed, listener);
+                    animator.start();
+                }
             }
         });
     }
@@ -136,8 +140,9 @@ public class ActivityCircularRevealUtil {
      * @param listener listener
      * @return Animator
      */
-    public Animator createRevealAnimator(Activity activity, View rootView, int x, int y,
-                                         boolean reversed, Animator.AnimatorListener listener) {
+    public Animator createRevealAnimator(final Activity activity, final View rootView, final int x,
+                                         final int y, final boolean reversed,
+                                         final Animator.AnimatorListener listener) {
         float hypot = (float) Math.hypot(rootView.getHeight(), rootView.getWidth());
         float startRadius = reversed ? hypot : 0;
         float endRadius = reversed ? 0 : hypot;

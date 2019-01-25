@@ -53,7 +53,7 @@ public class PraiseFragment extends Fragment {
 
     private void initView(View view) {
 
-        XPraiseLayout praiseLayout = view.findViewById(R.id.praiseView);
+        final XPraiseLayout praiseLayout = view.findViewById(R.id.praiseView);
 
         //0~255
         praiseLayout.setAlphaFrom(255);
@@ -64,6 +64,11 @@ public class PraiseFragment extends Fragment {
         praiseLayout.setInterpolators(new LinearInterpolator(), new DecelerateInterpolator());
         //设置显示的图片 随机抽取 setBitmaps setDrawables
         praiseLayout.setResources(R.drawable.green_heart, R.drawable.red_heart, R.drawable.white_heart);
-        view.findViewById(R.id.btn_praise).setOnClickListener(v -> praiseLayout.praise());
+        view.findViewById(R.id.btn_praise).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                praiseLayout.praise();
+            }
+        });
     }
 }

@@ -94,14 +94,17 @@ public class XFloodLayout extends RelativeLayout {
         ValueAnimator animator = ValueAnimator.ofFloat(0, 100);
         animator.setInterpolator(interpolator);
         animator.setDuration(duration);
-        animator.addUpdateListener(animation -> {
-            float value = (float) animation.getAnimatedValue();
-            float move = topImg.getMeasuredHeight() * value / 100;
-            topImg.setTranslationY(-move);
-            bottomImg.setTranslationY(move);
-            isAniming = true;
-            if (onFloodUpdateListener != null) {
-                onFloodUpdateListener.onUpdate(value, true);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float value = (float) animation.getAnimatedValue();
+                float move = topImg.getMeasuredHeight() * value / 100;
+                topImg.setTranslationY(-move);
+                bottomImg.setTranslationY(move);
+                isAniming = true;
+                if (onFloodUpdateListener != null) {
+                    onFloodUpdateListener.onUpdate(value, true);
+                }
             }
         });
         animator.addListener(new Animator.AnimatorListener() {
@@ -148,14 +151,17 @@ public class XFloodLayout extends RelativeLayout {
         ValueAnimator animator = ValueAnimator.ofFloat(0, 100);
         animator.setInterpolator(interpolator);
         animator.setDuration(duration);
-        animator.addUpdateListener(animation -> {
-            float value = (float) animation.getAnimatedValue();
-            float move = topImg.getMeasuredHeight() * (1 - value / 100);
-            topImg.setTranslationY(-move);
-            bottomImg.setTranslationY(move);
-            isAniming = true;
-            if (onFloodUpdateListener != null) {
-                onFloodUpdateListener.onUpdate(value, false);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float value = (float) animation.getAnimatedValue();
+                float move = topImg.getMeasuredHeight() * (1 - value / 100);
+                topImg.setTranslationY(-move);
+                bottomImg.setTranslationY(move);
+                isAniming = true;
+                if (onFloodUpdateListener != null) {
+                    onFloodUpdateListener.onUpdate(value, false);
+                }
             }
         });
         animator.addListener(new Animator.AnimatorListener() {

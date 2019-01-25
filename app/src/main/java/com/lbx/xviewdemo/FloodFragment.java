@@ -58,16 +58,19 @@ public class FloodFragment extends Fragment {
         ImageView backgroundView = new ImageView(getContext());
         backgroundView.setBackgroundResource(R.drawable.bg);
 
-        XFloodLayout floodLayout = view.findViewById(R.id.floodView);
+        final XFloodLayout floodLayout = view.findViewById(R.id.floodView);
         floodLayout.init(foregroundView, backgroundView);
 
-        view.findViewById(R.id.btn_flood).setOnClickListener(v -> {
-            if (!floodLayout.isFlood()) {
-                //打开
-                floodLayout.flood(500, new AccelerateInterpolator());
-            } else {
-                //关闭
-                floodLayout.unFlood(500, new DecelerateInterpolator());
+        view.findViewById(R.id.btn_flood).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!floodLayout.isFlood()) {
+                    //打开
+                    floodLayout.flood(500, new AccelerateInterpolator());
+                } else {
+                    //关闭
+                    floodLayout.unFlood(500, new DecelerateInterpolator());
+                }
             }
         });
 

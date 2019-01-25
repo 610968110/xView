@@ -79,9 +79,9 @@ public class ViewCircularRevealUtil {
         goneFloatingViewByClickPosition(centerX, centerY, floatingView);
     }
 
-    public void goneFloatingViewByClickPosition(int x, int y, View floatingView) {
-        float finalRadius = (float) Math.hypot((double) x, (double) y);
-        Animator mCircularReveal = ViewAnimationUtils.createCircularReveal(
+    public void goneFloatingViewByClickPosition(int x, int y, final View floatingView) {
+        final float finalRadius = (float) Math.hypot((double) x, (double) y);
+        final Animator mCircularReveal = ViewAnimationUtils.createCircularReveal(
                 floatingView, x, y, finalRadius, 0);
         mCircularReveal.addListener(new Animator.AnimatorListener() {
             @Override

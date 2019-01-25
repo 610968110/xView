@@ -174,11 +174,14 @@ public abstract class BaseSnowdriftLayout extends RelativeLayout {
         BezierEvaluator evaluator = new BezierEvaluator(getPointF(2), getPointF(1));
         ValueAnimator animator = ValueAnimator.ofObject(evaluator, startPoint(mRectF, mSize), endPoint(mRectF, mSize));
         animator.setTarget(target);
-        animator.addUpdateListener(valueAnimator -> {
-            // 这里获取到贝塞尔曲线计算出来的的x y值 赋值给view 这样就能让爱心随着曲线走啦
-            PointF pointF = (PointF) valueAnimator.getAnimatedValue();
-            target.setX(pointF.x);
-            target.setY(pointF.y);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                // 这里获取到贝塞尔曲线计算出来的的x y值 赋值给view 这样就能让爱心随着曲线走啦
+                PointF pointF = (PointF) animation.getAnimatedValue();
+                target.setX(pointF.x);
+                target.setY(pointF.y);
+            }
         });
 
         animator.setDuration(mDuration);

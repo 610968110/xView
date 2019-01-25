@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        List<Fragment> list = new ArrayList<>();
+        final List<Fragment> list = new ArrayList<>();
         list.add(CircularFragment.newInstance());
         list.add(ProgressFragment.newInstance());
         list.add(WaveFragment.newInstance());

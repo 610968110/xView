@@ -57,20 +57,20 @@ public class MaterialUtil {
     }
 
     public void launchTwitter(final IMaterial iMaterial) {
-        View bottomView = iMaterial.getBottomView();
-        View topView = iMaterial.getTopView();
-        View floatingButton = iMaterial.getFloatingButton();
-        View[] topChildView = iMaterial.getTopChildView();
+        final View bottomView = iMaterial.getBottomView();
+        final View topView = iMaterial.getTopView();
+        final View floatingButton = iMaterial.getFloatingButton();
+        final View[] topChildView = iMaterial.getTopChildView();
         for (View view : topChildView) {
             if (view != null) {
                 view.setVisibility(View.INVISIBLE);
             }
         }
-        int width = bottomView.getWidth();
-        int height = bottomView.getHeight();
+        final int width = bottomView.getWidth();
+        final int height = bottomView.getHeight();
         int x = width / 2;
-        int y = height / 2;
-        int hypotenuse = (int) Math.hypot(x, y);
+        final int y = height / 2;
+        final int hypotenuse = (int) Math.hypot(x, y);
 
         x = (int) (x - ((16 * pixelDensity) + (28 * pixelDensity)));
 
@@ -137,13 +137,13 @@ public class MaterialUtil {
     }
 
     public void closeTwitter(final IMaterial iMaterial) {
-        View bottomView = iMaterial.getBottomView();
-        View topView = iMaterial.getTopView();
-        View floatingButton = iMaterial.getFloatingButton();
-        View[] topChildView = iMaterial.getTopChildView();
-        int width = bottomView.getWidth();
-        int height = bottomView.getHeight();
-        int hypotenuse = (int) Math.hypot(width / 2, height / 2);
+        final View bottomView = iMaterial.getBottomView();
+        final View topView = iMaterial.getTopView();
+        final View floatingButton = iMaterial.getFloatingButton();
+        final View[] topChildView = iMaterial.getTopChildView();
+        final int width = bottomView.getWidth();
+        final int height = bottomView.getHeight();
+        final int hypotenuse = (int) Math.hypot(width / 2, height / 2);
         alphaDisappear.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {

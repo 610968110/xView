@@ -54,10 +54,20 @@ public class MaterialActivity extends AppCompatActivity implements IMaterial {
         closeButton = findViewById(R.id.btn_close);
         revealView = findViewById(R.id.linearView);
 
-        MaterialUtil materialUtil = CircularRevealUtils.MaterialUtil(this);
+        final MaterialUtil materialUtil = CircularRevealUtils.MaterialUtil(this);
 
-        imageButton.setOnClickListener(v -> materialUtil.launchTwitter(MaterialActivity.this));
-        closeButton.setOnClickListener(v -> materialUtil.closeTwitter(MaterialActivity.this));
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                materialUtil.launchTwitter(MaterialActivity.this);
+            }
+        });
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                materialUtil.closeTwitter(MaterialActivity.this);
+            }
+        });
     }
 
 
