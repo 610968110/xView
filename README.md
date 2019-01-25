@@ -229,7 +229,9 @@ floodLayout.isFlood()
 ````
 
 CircularRevealActivity中的逻辑：
-* 首先需要实现接口 ICircularReveal，其中getActivity()返回为当前的Activity，
+* 首先，需要在AndroidManifest文件中，给被跳转页面设置属性：
+android:theme="@style/CircularRevealAnimTheme"
+* 接着，需要实现接口 ICircularReveal，其中getActivity()返回为当前的Activity，
 getRootView()返回为xml中的根布局，本框架会使用根布局做动画效果。
 * 然后再OnCreate方法里：
 ````Java
