@@ -160,6 +160,9 @@ xSnowdriftSpeed | 图片(雪花)飘落速度、毫秒
 
 使用:
 ````
+//设置图片  每个雪花会随机抽取其中一个
+snowLayout.setResources(R.drawable.red_heart, R.drawable.green_heart, R.drawable.white_heart);
+
 //设置插值器  每个雪花会随机抽取其中一个
 snowLayout.setInterpolators(new LinearInterpolator(), new DecelerateInterpolator(), new AccelerateDecelerateInterpolator());
 
@@ -180,6 +183,12 @@ snowLayout.setSpeed(int);
 
 //设置飘落速度,毫秒,如100,则从顶部飘到底部的时间是100毫秒
 snowLayout.setDuration(int);
+
+//开始动画
+snowLayout.startAnimation();
+
+//结束动画
+snowLayout.cancelAnimation();
 
 ````
 
